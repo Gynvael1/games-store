@@ -1,0 +1,24 @@
+extends layout
+block content
+  h2 Редактирование покупки: #{purchase.gametitle}
+  form(action=`/purchases/update/${purchase.purchaseid}` method="POST")
+    label(for="customerid") Клиент:
+    select(name="customerid" required)
+      each customer in customers
+        option(value=customer.customerid selected=(customer.customerid == purchase.customerid ? 'selected' : ''))= customer.firstname + ' ' + customer.lastname
+    label(for="gameid") Игра:
+    select(name="gameid" required)
+      each game in games
+        option(value=game.gameid selected=(game.gameid == purchase.gameid ? 'selected' : ''))= game.title
+    label(for="purchasedate") Дата покупки:
+    input(type="date", name="purchasedate", value=purchase.purchasedate.toISOString().split('T')[0], required)
+    label(for="platformid") Платформа:
+    select(name="platformid" required)
+      each platform in platforms
+        option(value=platform.platformid selected=(platform.platformid == purchase.platformid ? 'selected' : ''))= platform.name
+    label(for="sellerid") Продавец:
+    select(name="sellerid" required)
+      each seller in sellers
+        option(value=seller.sellerid selected=(seller.sellerid == purchase.sellerid ? 'selected' : ''))= seller.firstname + ' ' + seller.lastname
+    button(type="submit") Сохранить изменения
+    a.btn.btn-secondary(href="/purchases" style="margin-left: 10px;") Отмена

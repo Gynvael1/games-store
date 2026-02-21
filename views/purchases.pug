@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  a(href="/" class="btn btn-primary") ← На главную
+  h2 Список покупок
+  table
+    thead
+      tr
+        th Клиент
+        th Игра
+        th Дата покупки
+        th Платформа
+        th Продавец
+        th Действия
+    tbody
+      each purchase in purchases
+        tr
+          td= purchase.customername
+          td= purchase.gametitle
+          td= purchase.purchasedate
+          td= purchase.platformname
+          td= purchase.sellername
+          td.actions
+            a.edit-btn(href=`/purchases/edit/${purchase.purchaseid}`) Редактировать
+            form(action=`/purchases/delete/${purchase.purchaseid}` method="POST" style="display:inline; margin-left:10px;")
+              button.delete-btn(type="submit") Удалить
+  h3 Добавить новую покупку
+  form(action="/purchases/add" method="POST")
+    label(for="customerid") Клиент:
+    select(name="customerid" required)
+      each customer in customers
+        option(value=customer.customerid)= customer.firstname + ' ' + customer.lastname
+    label(for="gameid") Игра:
+    select(name="gameid" required)
+      each game in games
+        option(value=game.gameid)= game.title
+    label(for="purchasedate") Дата покупки:
+    input(type="date", name="purchasedate", required)
+    label(for="platformid") Платформа:
+    select(name="platformid" required)
+      each platform in platforms
+        option(value=platform.platformid)= platform.name
+    label(for="sellerid") Продавец:
+    select(name="sellerid" required)
+      each seller in sellers
+        option(value=seller.sellerid)= seller.firstname + ' ' + seller.lastname
+    button(type="submit") Добавить покупку

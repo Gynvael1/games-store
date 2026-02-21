@@ -1,0 +1,158 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f0fa;
+  color: #2c003e;
+}
+
+header {
+  background-color: #6a0dad;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info span {
+  margin-right: 10px;
+}
+
+main {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #fff0ff;
+}
+
+table th,
+table td {
+  border: 1px solid #d1b3ff;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table th {
+  background-color: #e0c3ff;
+  color: #2c003e;
+}
+
+button.delete-btn {
+  background-color: #b30059;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button.delete-btn:hover {
+  background-color: #800040;
+}
+
+button[type="submit"],
+button {
+  background-color: #6a0dad;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover,
+button:hover {
+  background-color: #530089;
+}
+
+a.btn {
+  display: inline-block;
+  background-color: #6a0dad;
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+a.btn:hover {
+  background-color: #530089;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.error-message {
+  color: #cc0033;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  color: #009900;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+img {
+  max-height: 80px;
+  display: block;
+  margin: 0 auto;
+}
+
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: #fff0ff;
+  border: 1px solid #d1b3ff;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.auth-container h2 {
+  text-align: center;
+  color: #6a0dad;
+  margin-bottom: 20px;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

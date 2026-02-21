@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  a(href="/" class="btn btn-primary") ← На главную
+  h2 Список продавцов
+  table
+    thead
+      tr
+        th Имя
+        th Фамилия
+        th Возраст
+        th Опыт
+        th Действия
+    tbody
+      each seller in sellers
+        tr
+          td= seller.firstname
+          td= seller.lastname
+          td= seller.age
+          td= seller.experience
+          td.actions
+            a.edit-btn(href=`/sellers/edit/${seller.sellerid}`) Редактировать
+            form(action=`/sellers/delete/${seller.sellerid}` method="POST" style="display:inline; margin-left:10px;")
+              button.delete-btn(type="submit") Удалить
+  h3 Добавить нового продавца
+  form(action="/sellers/add" method="POST")
+    - const fieldErrors = (locals.fieldErrors && locals.fieldErrors[0]) || {}
+    - const formdata = (locals.formdata && locals.formdata[0]) || {}
+    .form-group
+      label(for="firstname") Имя:
+      input(type="text", name="firstname", value=formdata.firstname || '', required)
+      if fieldErrors.firstname
+        .error-message(style="color:red;")= fieldErrors.firstname
+    .form-group
+      label(for="lastname") Фамилия:
+      input(type="text", name="lastname", value=formdata.lastname || '', required)
+      if fieldErrors.lastname
+        .error-message(style="color:red;")= fieldErrors.lastname
+    .form-group
+      label(for="age") Возраст:
+      input(type="number", name="age", value=formdata.age || '', required)
+    .form-group
+      label(for="experience") Опыт:
+      input(type="number", name="experience", value=formdata.experience || '', required)
+    button(type="submit") Добавить продавца

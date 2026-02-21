@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  a(href="/" class="btn btn-primary") ← На главную
+  h2 Список клиентов
+  table
+    thead
+      tr
+        th Имя
+        th Фамилия
+        th Email
+        th Действия
+    tbody
+      each customer in customers
+        tr
+          td= customer.firstname
+          td= customer.lastname
+          td= customer.email
+          td.actions
+            a.edit-btn(href=`/customers/edit/${customer.customerid}`) Редактировать
+            form(action=`/customers/delete/${customer.customerid}` method="POST" style="display:inline; margin-left:10px;")
+              button.delete-btn(type="submit") Удалить
+  h3 Добавить нового клиента
+  form(action="/customers/add" method="POST")
+    - const fieldErrors = (locals.fieldErrors && locals.fieldErrors[0]) || {}
+    - const formdata = (locals.formdata && locals.formdata[0]) || {}
+    .form-group
+      label(for="firstname") Имя:
+      input(type="text", name="firstname", value=formdata.firstname || '', required)
+      if fieldErrors.firstname
+        .error-message(style="color:red;")= fieldErrors.firstname
+    .form-group
+      label(for="lastname") Фамилия:
+      input(type="text", name="lastname", value=formdata.lastname || '', required)
+      if fieldErrors.lastname
+        .error-message(style="color:red;")= fieldErrors.lastname
+    .form-group
+      label(for="email") Email:
+      input(type="email", name="email", value=formdata.email || '', required)
+      if fieldErrors.email
+        .error-message(style="color:red;")= fieldErrors.email
+    button(type="submit") Добавить клиента

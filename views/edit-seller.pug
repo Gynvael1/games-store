@@ -1,0 +1,19 @@
+extends layout
+block content
+  h2 Редактирование продавца: #{seller.firstname} #{seller.lastname}
+  form(action=`/sellers/update/${seller.sellerid}` method="POST")
+    .form-group
+      label(for="firstname") Имя:
+      input.form-control(type="text" name="firstname" id="firstname" value=seller.firstname required)
+    .form-group
+      label(for="lastname") Фамилия:
+      input.form-control(type="text" name="lastname" id="lastname" value=seller.lastname required)
+    .form-group
+      label(for="age") Возраст:
+      input.form-control(type="number" name="age" id="age" value=seller.age required)
+    .form-group
+      label(for="experience") Опыт:
+      input.form-control(type="number" name="experience" id="experience" value=seller.experience required)
+    .form-actions
+      button.btn.btn-primary(type="submit") Сохранить изменения
+      a.btn.btn-secondary(href="/sellers" style="margin-left: 10px;") Отмена

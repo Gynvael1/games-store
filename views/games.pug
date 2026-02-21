@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  a(href="/" class="btn btn-primary") ← На главную
+  h2 Список игр
+  table
+    thead
+      tr
+        th(style="text-align: center") Изображение
+        th(style="text-align: center") Название
+        th(style="text-align: center") Цена
+        th(style="text-align: center") Дата выхода
+        th(style="text-align: center") Действия
+    tbody
+      each game in games
+        tr
+          td(style="text-align: center")
+            if game.image_url
+              img(src=game.image_url, alt=game.title, style="max-height: 80px;")
+            else
+              span(style="color: #888") Нет изображения
+          td(style="text-align: center")= game.title
+          td(style="text-align: center")= game.price
+          td(style="text-align: center")= game.releasedate
+          td.actions(style="text-align: center")
+            a.edit-btn(href=`/games/edit/${game.gameid}`) Редактировать
+            form(action=`/games/delete/${game.gameid}` method="POST" style="display:inline; margin-left:10px;")
+              button.delete-btn(type="submit") Удалить
+    h3 Добавить новую игру
+  form(action="/games/add" method="POST")
+    label(for="title") Название:
+    input(type="text" name="title" required)
+
+    label(for="price") Цена:
+    input(type="number" step="0.01" name="price" required)
+
+    label(for="releasedate") Дата выхода:
+    input(type="date" name="releasedate" required)
+
+    label(for="developername") Разработчик:
+    input(type="text" name="developername" required)
+
+    label(for="image_url") URL изображения:
+    input(type="text" name="image_url")
+
+    button(type="submit") Добавить игру

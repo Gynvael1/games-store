@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  if user
+    h2 Добро пожаловать, #{user.username}!
+    ul
+      li: a(href="/games") Игры
+      li: a(href="/customers") Клиенты
+      li: a(href="/sellers") Продавцы
+      li: a(href="/purchases") Покупки
+  else
+    h2 Добро пожаловать!
+    p Для продолжения необходимо авторизоваться.
+    a(href="/auth/login") Перейти к авторизации

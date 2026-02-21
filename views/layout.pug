@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Админ-панель
+    link(rel="stylesheet", href="/css/styles.css")
+  body
+    header
+      h1 Админ-панель
+      nav
+        if user
+          a(href='/games') Игры
+          a(href='/customers') Клиенты
+          a(href='/sellers') Продавцы
+          a(href='/purchases') Покупки
+          .user-info
+            span Пользователь: #{user.username}
+            form(action="/auth/logout" method="POST")
+              button(type="submit") Выйти
+        else
+          a(href='/auth/login') Вход
+          a(href='/auth/register') Регистрация
+    main
+      block content

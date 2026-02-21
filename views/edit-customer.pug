@@ -1,0 +1,16 @@
+extends layout
+block content
+  h2 Редактирование клиента: #{customer.firstname} #{customer.lastname}
+  form(action=`/customers/update/${customer.customerid}` method="POST")
+    .form-group
+      label(for="firstname") Имя:
+      input.form-control(type="text" name="firstname" id="firstname" value=customer.firstname required)
+    .form-group
+      label(for="lastname") Фамилия:
+      input.form-control(type="text" name="lastname" id="lastname" value=customer.lastname required)
+    .form-group
+      label(for="email") Email:
+      input.form-control(type="email" name="email" id="email" value=customer.email required)
+    .form-actions
+      button.btn.btn-primary(type="submit") Сохранить изменения
+      a.btn.btn-secondary(href="/customers" style="margin-left: 10px;") Отмена
